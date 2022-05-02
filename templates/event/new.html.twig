@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'évènement{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouvel évènement</h1>
+
+    {{ include('event/_form.html.twig') }}
+    <button class="btn btn-primary m-2"><a class="text-white text-decoration-none" href="{{ path('app_main') }}">Retour à l'acceuil</a></button>
+
+{% endblock %}

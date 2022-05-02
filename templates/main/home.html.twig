@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation des évènements{% endblock %}
+
+{% block body %}
+    <h1 class="texte-center">Reservation des évènements</h1>
+
+    <button class="btn btn-primary"><a class="text-white text-decoration-none" href="{{ path('app_event_new') }}">Ajouter
+            un nouvel évènement</a></button>
+    <button class="btn btn-primary"><a class="text-white text-decoration-none" href="{{ path('app_place_new') }}">Ajouter
+            un nouveau lieu</a></button>
+    <div class="d-flex justify-center flex-wrap">
+
+
+        {% for event in events %}
+            <div class="card m-3 d-flex" style="width: 17rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+
+                    <p class="card-text">{{ event.description }}</p>
+
+                    <a href="{{ path('app_event_show', {'id': event.id}) }}" class="card-link">Voir</a>
+
+                    <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="card-link">edit</a>
+                    {% if app.user %}
+
+                        {% if event.isUserSignedUp(app.user) %}
+                            <a class="btn btn-success m-2"
+                               href="{{ path('app_signup', {'id': event.id}) }}">Participer</a>
+                        {% else %}
+                            <a class="btn btn-danger m-2" href="{{ path('app_signup', {'id': event.id}) }}">Se
+                                retirer</a>
+
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun évènement en prévision.</td>
+            </tr>
+        {% endfor %}
+
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
