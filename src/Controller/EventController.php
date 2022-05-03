@@ -46,11 +46,21 @@ class EventController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_event_show', methods: ['GET'])]
-    public function show(Event $event): Response
+    public function show(Event $event, UserListByEventsRepository $userList, $id, EventRepository $eventRepository): Response
     {
+        $views = $event->getViews();
+        $event->setViews($views+1);
+        $eventRepository->add($event);
+
+
         return $this->render('event/show.html.twig', [
             'event' => $event,
+            'userlist'=>$userList->findBy(
+                ['events'=>$id]
+            )
+
         ]);
+
     }
 
     #[Route('/{id}/edit', name: 'app_event_edit', methods: ['GET', 'POST'])]

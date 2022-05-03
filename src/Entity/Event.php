@@ -28,6 +28,9 @@ class Event
     #[ORM\OneToMany(mappedBy: 'events', targetEntity: UserListByEvents::class)]
     private $userListByEvents;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $views;
+
 
     public function __construct()
     {
@@ -120,6 +123,18 @@ class Event
                 $userListByEvent->setEvents(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(?int $views): self
+    {
+        $this->views = $views;
 
         return $this;
     }

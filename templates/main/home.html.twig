@@ -25,11 +25,10 @@
                     {% if app.user %}
 
                         {% if event.isUserSignedUp(app.user) %}
-                            <a class="btn btn-success m-2"
-                               href="{{ path('app_signup', {'id': event.id}) }}">Participer</a>
+                            <a class="btn btn-danger m-2"
+                               href="{{ path('app_signup', {'id': event.id}) }}">Retirer</a>
                         {% else %}
-                            <a class="btn btn-danger m-2" href="{{ path('app_signup', {'id': event.id}) }}">Se
-                                retirer</a>
+                            <a class="btn btn-success m-2" href="{{ path('app_signup', {'id': event.id}) }}">Participer</a>
 
                         {% endif %}
 
