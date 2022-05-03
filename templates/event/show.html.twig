@@ -7,24 +7,36 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ event.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.description }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ event.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ event.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ event.description }}</td>
+        </tr>
         </tbody>
     </table>
+    {% for user in userlist %}
 
-    <a href="{{ path('app_event_index') }}">back to list</a>
+        <p>{{ user.users.username }}</p>
 
-    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
+    {% endfor %}
+    <p>Nombre de vues: {{ event.views }}</p>
+
+
+        
+    <a href="{{ path('app_event_index') }}">Retour</a>
+
+    <a href="{{ path('app_event_edit', {'id': event.id}) }}">Editer</a>
+
 
     {{ include('event/_delete_form.html.twig') }}
+
+
+
 {% endblock %}
